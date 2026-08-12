@@ -506,7 +506,7 @@
     function updatePlayButtonState(playing) {
       document.getElementById('play-btn').textContent = playing ? '⏸' : '▶';
     }
-
+/*
     function updateUI() {
       const catObj = categories[currentCategoryKey];
       
@@ -545,7 +545,45 @@
         }
       }
     }
+*/
+    function updateUI() {
+      const catObj = categories[currentCategoryKey];
+  
+      // Update active button styles
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-stone-950', 'font-bold', 'shadow-lg');
+        b.classList.add('text-amber-100', 'hover:bg-amber-500/20');
+      });
 
+      const activeBtn = document.querySelector(`[data-key="${currentCategoryKey}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-amber-500', 'text-stone-950', 'font-bold', 'shadow-lg');
+        activeBtn.classList.remove('text-amber-100', 'hover:bg-amber-500/20');
+      }
+
+      // Update text elements on the page
+      document.getElementById('song-category').textContent = catObj.cat;
+      document.getElementById('tagline').textContent = catObj.tagline;
+
+      // Instant single-click playlist switch handler
+      if (isPlayerReady && player) {
+        const randomIndex = Math.floor(Math.random() * 10);
+    
+        // Stop current stream immediately to clear buffer lock
+        player.stopVideo();
+    
+        // Load new playlist and play instantly
+        setTimeout(() => {
+          player.loadPlaylist({
+            listType: 'playlist',
+            list: catObj.playlistId,
+            index: randomIndex
+          });
+          player.playVideo();
+        }, 50);
+      }
+    }
+    
     function selectCategory(key) {
       currentCategoryKey = key;
       updateUI();
