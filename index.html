@@ -270,9 +270,6 @@
         <button data-key="safar" onclick="selectCategory('safar')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           🛵 सफ़र
         </button>
-        <button data-key="chai" onclick="selectCategory('chai')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
-          ☕ चाय और गाने
-        </button>
 
         <!-- FOLD / UNFOLD MENU BUTTON -->
         <button onclick="toggleFoldMenu()" class="hover:bg-amber-500/20 text-amber-300 text-xs px-3 py-1.5 rounded-full flex items-center space-x-1.5 transition whitespace-nowrap border border-amber-500/30 font-semibold">
@@ -285,21 +282,24 @@
       <div id="unfold-menu" class="hidden p-3 glass-card rounded-2xl w-full max-w-xl transition-all border border-amber-500/30">
         <p class="text-[11px] font-bold text-amber-400/90 text-center mb-2 uppercase tracking-wider">अन्य प्लेलिस्ट (More Playlists):</p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-          <button onclick="selectCategory('raat')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
+        <button  onclick="selectCategory('chai')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+          ☕ चाय और गाने
+        </button>
+      <!--    <button onclick="selectCategory('raat')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             🌙 रात के गाने
           </button>
           <button onclick="selectCategory('sad')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             💔 दर्द भरे नग़मे
-          </button>
+	  </button>  -->
           <button onclick="selectCategory('romantic')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             ❤️ रोमांस हिट्स
           </button>
-          <button onclick="selectCategory('ghazal')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
+   <!--       <button onclick="selectCategory('ghazal')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             🎶 ग़ज़ल संग्रह
           </button>
           <button onclick="selectCategory('devotional')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             🪔 भक्ति संध्या
-          </button>
+	  </button>  -->
           <button onclick="selectCategory('monsoon')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             🌧️ बारिश के गीत
           </button>
