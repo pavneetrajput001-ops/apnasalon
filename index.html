@@ -10,6 +10,7 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
+      background-color: #050505; /* Deep base color */
     }
     .hindi-title {
       font-family: 'Yatra One', cursive;
@@ -70,30 +71,32 @@
       transform: scale(1.1);
     }
 
-    input[type=range].mac-slider::-moz-range-thumb {
-      background: #ffffff;
-      height: 12px;
-      width: 12px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
+    /* 🌟 Dynamic Background Layers Setup 🌟 */
+    .dynamic-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
       opacity: 0;
-      transition: opacity 0.15s ease;
+      transition: opacity 0.8s ease-in-out;
     }
-
-    input[type=range].mac-slider:hover::-moz-range-thumb {
+    .dynamic-bg.active {
       opacity: 1;
     }
   </style>
 </head>
-<body class="bg-stone-950 min-h-screen text-amber-50 flex flex-col justify-between relative overflow-hidden selection:bg-amber-500 selection:text-black">
+<body class="min-h-screen text-amber-50 flex flex-col justify-between relative overflow-hidden selection:bg-amber-500 selection:text-black">
 
   <!-- HIDDEN YOUTUBE PLAYER -->
   <div class="hidden">
     <div id="youtube-player"></div>
   </div>
 
-  <!-- Background SVG -->
+  <!-- ================================================== -->
+  <!-- 🎨 BACKGROUND SCENE 1: ORIGINAL SALON STOREFRONT    -->
+  <!-- ================================================== -->
   <div class="absolute inset-0 w-full h-full pointer-events-none z-0">
     <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -152,6 +155,69 @@
       <path d="M 340,530 L 385,530 L 415,480 L 370,480 Z M 385,530 L 385,460 L 400,460" stroke="#000" stroke-width="4" fill="none" />
 
       <rect width="1200" height="800" fill="#000" opacity="0.3" />
+    </svg>
+  </div>
+
+  <!-- ================================================== -->
+  <!-- 🎨 BACKGROUND SCENE 2: VINTAGE RECORD / RADIO      -->
+  <!-- ================================================== -->
+<div id="bg-vintage" class="dynamic-bg">
+    <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="gradOld" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#3f2e1a" />
+          <stop offset="100%" stop-color="#0a0705" />
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="800" fill="url(#gradOld)" />
+      
+      <!-- Subtle Vinyl Texture -->
+      <circle cx="600" cy="400" r="450" fill="none" stroke="#2a1d0f" stroke-width="20" stroke-dasharray="10 5" />
+      <circle cx="600" cy="400" r="350" fill="none" stroke="#2a1d0f" stroke-width="15" stroke-dasharray="5 10" />
+      
+      <!-- Gramophone Horn Silhouette -->
+      <path d="M750,400 Q950,350 900,150 Q800,100 650,250 L600,400 Z" fill="#1c1208" stroke="#452a0a" stroke-width="2" />
+      <path d="M750,400 L850,480 L650,550 L600,400 Z" fill="#2a1d0f" />
+      
+      <!-- Floating Notes -->
+      <text x="300" y="200" font-size="60" fill="#b45309" opacity="0.3">♪</text>
+      <text x="250" y="500" font-size="40" fill="#b45309" opacity="0.2">♫</text>
+    </svg>
+  </div>
+
+  <!-- ================================================== -->
+  <!-- 🎨 BACKGROUND SCENE 3: NIGHT SKY / MOON           -->
+  <!-- ================================================== -->
+  <div id="bg-night" class="dynamic-bg">
+    <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="nightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#020617" />
+          <stop offset="50%" stop-color="#0f172a" />
+          <stop offset="100%" stop-color="#1e1b4b" />
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="800" fill="url(#nightGrad)" />
+      
+      <!-- Moon -->
+      <circle cx="1000" cy="200" r="100" fill="#fef08a" opacity="0.8" />
+      <circle cx="970" cy="180" r="100" fill="#020617" opacity="0.95" />
+      
+      <!-- Scattered Stars -->
+      <g fill="#ffffff">
+        <circle cx="150" cy="120" r="2" opacity="0.8" />
+        <circle cx="300" cy="250" r="1.5" opacity="0.5" />
+        <circle cx="500" cy="80" r="2.5" opacity="0.9" />
+        <circle cx="700" cy="300" r="1" opacity="0.4" />
+        <circle cx="850" cy="100" r="2" opacity="0.7" />
+        <circle cx="1100" cy="400" r="1.5" opacity="0.6" />
+        <circle cx="200" cy="450" r="2" opacity="0.8" />
+        <circle cx="450" cy="550" r="1" opacity="0.3" />
+      </g>
+
+      <!-- Soft Mountain Silhouette at bottom -->
+      <path d="M0,800 L0,650 Q150,550 300,680 T700,600 T1200,650 L1200,800 Z" fill="#000000" opacity="0.6" />
+      <path d="M0,800 L0,700 Q200,600 450,750 T900,650 T1200,720 L1200,800 Z" fill="#000000" opacity="0.8" />
     </svg>
   </div>
 
@@ -330,19 +396,19 @@
 
     // All Categories (Kishor Daa added with playlist reference)
     const categories = {
-      'salon': { name: "सैलून हिट्स", cat: "Category: सैलून हिट्स", tagline: '"सैलून की महफ़िल और सदाबहार नग़मों की शाम..."', playlistId: MY_PLAYLIST_ID_salon },
-      'purane': { name: "ओल्ड इज़ गोल्ड", cat: "Category: ओल्ड इज़ गोल्ड", tagline: '"वही पुराना टेप... वही सदाबहार नग़मे"', playlistId: MY_PLAYLIST_ID_purane },
-      'kishor': { name: "किशोर दा", cat: "Category: किशोर दा", tagline: '"किशोर कुमार की जादुई आवाज़ और अनमोल तराने..."', playlistId: MY_PLAYLIST_ID_kishore },
-      'safar': { name: "सफ़र", cat: "Category: सफ़र", tagline: '"सफ़र में खिलते हैं दिल के फूल..."', playlistId: MY_PLAYLIST_ID },
-      'chai': { name: "चाय और गाने", cat: "Category: चाय और गाने", tagline: '"शाम की चाय और मीठे तरानें..."', playlistId: MY_PLAYLIST_ID },
+      'salon': { name: "सैलून हिट्स", cat: "Category: सैलून हिट्स", tagline: '"सैलून की महफ़िल और सदाबहार नग़मों की शाम..."', playlistId: MY_PLAYLIST_ID_salon, bgId: 'bg-salon' },
+      'purane': { name: "ओल्ड इज़ गोल्ड", cat: "Category: ओल्ड इज़ गोल्ड", tagline: '"वही पुराना टेप... वही सदाबहार नग़मे"', playlistId: MY_PLAYLIST_ID_purane, bgId: 'bg-vintage' },
+      'kishor': { name: "किशोर दा", cat: "Category: किशोर दा", tagline: '"किशोर कुमार की जादुई आवाज़ और अनमोल तराने..."', playlistId: MY_PLAYLIST_ID_kishore, bgId: 'bg-vintage' },
+      'safar': { name: "सफ़र", cat: "Category: सफ़र", tagline: '"सफ़र में खिलते हैं दिल के फूल..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-night' },
+      'chai': { name: "चाय और गाने", cat: "Category: चाय और गाने", tagline: '"शाम की चाय और मीठे तरानें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
       
       // Additional Playlists
-      'raat': { name: "रात के गाने", cat: "Category: रात के गाने", tagline: '"रात का सफ़र और पुराने गानों का हमसफ़र..."', playlistId: MY_PLAYLIST_ID },
-      'sad': { name: "दर्द भरे नग़मे", cat: "Category: दर्द भरे नग़मे", tagline: '"टूटे दिल की सदा... मीठे दर्द का एहसास"', playlistId: MY_PLAYLIST_ID },
-      'romantic': { name: "रोमांस हिट्स", cat: "Category: रोमांस हिट्स", tagline: '"प्यार के नग़मे, मोहब्बत की बातें..."', playlistId: MY_PLAYLIST_ID },
-      'ghazal': { name: "ग़ज़ल संग्रह", cat: "Category: ग़ज़ल संग्रह", tagline: '"ग़ज़लों का सुहाना सफ़र..."', playlistId: MY_PLAYLIST_ID },
-      'devotional': { name: "भक्ति संध्या", cat: "Category: भक्ति संध्या", tagline: '"मन की शांति और भक्ति के सुर..."', playlistId: MY_PLAYLIST_ID },
-      'monsoon': { name: "बारिश के गीत", cat: "Category: बारिश के गीत", tagline: '"रिमझिम के तराने और पुरानी यादें..."', playlistId: MY_PLAYLIST_ID }
+      'raat': { name: "रात के गाने", cat: "Category: रात के गाने", tagline: '"रात का सफ़र और पुराने गानों का हमसफ़र..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
+      'sad': { name: "दर्द भरे नग़मे", cat: "Category: दर्द भरे नग़मे", tagline: '"टूटे दिल की सदा... मीठे दर्द का एहसास"', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
+      'romantic': { name: "रोमांस हिट्स", cat: "Category: रोमांस हिट्स", tagline: '"प्यार के नग़मे, मोहब्बत की बातें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
+      'ghazal': { name: "ग़ज़ल संग्रह", cat: "Category: ग़ज़ल संग्रह", tagline: '"ग़ज़लों का सुहाना सफ़र..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
+      'devotional': { name: "भक्ति संध्या", cat: "Category: भक्ति संध्या", tagline: '"मन की शांति और भक्ति के सुर..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
+      'monsoon': { name: "बारिश के गीत", cat: "Category: बारिश के गीत", tagline: '"रिमझिम के तराने और पुरानी यादें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' }
     };
 
     let currentCategoryKey = 'salon';
@@ -380,6 +446,7 @@
       }
     }
 
+    // YOUTUBE LOGIC
     function onYouTubeIframeAPIReady() {
       const randomIndex = Math.floor(Math.random() * 15);
 
@@ -507,51 +574,22 @@
     function updatePlayButtonState(playing) {
       document.getElementById('play-btn').textContent = playing ? '⏸' : '▶';
     }
-/*
-    function updateUI() {
-      const catObj = categories[currentCategoryKey];
-      
-      document.querySelectorAll('.cat-btn').forEach(b => {
-        b.classList.remove('bg-amber-500', 'text-stone-950', 'font-bold', 'shadow-lg');
-        b.classList.add('text-amber-100', 'hover:bg-amber-500/20');
-      });
 
-      const activeBtn = document.querySelector(`[data-key="${currentCategoryKey}"]`);
-      if (activeBtn) {
-        activeBtn.classList.add('bg-amber-500', 'text-stone-950', 'font-bold', 'shadow-lg');
-        activeBtn.classList.remove('text-amber-100', 'hover:bg-amber-500/20');
-      }
-
-      document.getElementById('song-category').textContent = catObj.cat;
-      document.getElementById('tagline').textContent = catObj.tagline;
-
-      if (isPlayerReady) {
-        const randomIndex = Math.floor(Math.random() * 15);
-        if (player && player.setShuffle) {
-          player.setShuffle(true);
-        }
-
-        if (isPlaying) {
-          player.loadPlaylist({
-            listType: 'playlist',
-            list: catObj.playlistId,
-            index: randomIndex
-          });
-        } else {
-          player.cuePlaylist({
-            listType: 'playlist',
-            list: catObj.playlistId,
-            index: randomIndex
-          });
-        }
-      }
-    }
-*/
     function updateUI() {
       const catObj = categories[currentCategoryKey];
   
+      // --- BACKGROUND SWAPPING LOGIC ---
+      document.querySelectorAll('.dynamic-bg').forEach(bg => {
+        bg.classList.remove('active');
+      });
+      
+      const targetBg = document.getElementById(catObj.bgId);
+      if (targetBg) {
+        targetBg.classList.add('active');
+      }
+
       // Update active button styles
-      document.querySelectorAll('.cat-btn').forEach(b => {
+      document.querySelectorAll('.cat-btn, .extra-cat-btn').forEach(b => {
         b.classList.remove('bg-amber-500', 'text-stone-950', 'font-bold', 'shadow-lg');
         b.classList.add('text-amber-100', 'hover:bg-amber-500/20');
       });
