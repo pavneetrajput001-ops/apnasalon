@@ -525,11 +525,11 @@
             </button>
           </div>
 
-          <!-- Progress Tracker -->
+          <!-- Progress Tracker (Optimized for Mobile/Laptop with previewSeek & seekTo) -->
           <div class="flex items-center space-x-1.5 w-full group/slider">
             <span id="current-time" class="text-[9px] md:text-[10px] text-stone-400 font-mono w-7 text-right tracking-wider">00:00</span>
             <div class="relative flex-1 flex items-center">
-              <input type="range" id="seek-bar" value="0" min="0" max="100" oninput="seekTo(this.value)" class="mac-slider flex-1 cursor-pointer w-full h-1 bg-stone-800 rounded-full overflow-hidden">
+              <input type="range" id="seek-bar" value="0" min="0" max="100" oninput="previewSeek(this.value)" onchange="seekTo(this.value)" class="mac-slider flex-1 cursor-pointer w-full h-1 bg-stone-800 rounded-full overflow-hidden">
             </div>
             <span id="total-duration" class="text-[9px] md:text-[10px] text-stone-500 font-mono w-7 text-left tracking-wider">00:00</span>
           </div>
@@ -742,13 +742,21 @@
       if (seekInterval) clearInterval(seekInterval);
     }
 
+    function previewSeek(percent) {
+      updateSeekBarFill(percent);
+      const duration = player && player.getDuration ? player.getDuration() : 0;
+      if (duration > 0) {
+        const previewTime = (percent / 100) * duration;
+        document.getElementById('current-time').textContent = formatTime(previewTime);
+      }
+    }
+
     function seekTo(percent) {
       if (player && player.getDuration) {
         const duration = player.getDuration();
         const seekSeconds = (percent / 100) * duration;
         player.seekTo(seekSeconds, true);
         updateSeekBarFill(percent);
-        document.getElementById('current-time').textContent = formatTime(seekSeconds);
       }
     }
 
@@ -795,22 +803,16 @@
       document.getElementById('song-category').textContent = catObj.cat;
       document.getElementById('tagline').textContent = catObj.tagline;
 
-      // Instant single-click playlist switch handler
+      // Safe mobile-compliant playlist queueing (prevents browser block)
       if (isPlayerReady && player) {
         const randomIndex = Math.floor(Math.random() * 10);
-    
-        // Stop current stream immediately to clear buffer lock
-        player.stopVideo();
-    
-        // Load new playlist and play instantly
-        setTimeout(() => {
-          player.loadPlaylist({
-            listType: 'playlist',
-            list: catObj.playlistId,
-            index: randomIndex
-          });
-          player.playVideo();
-        }, 50);
+        player.cuePlaylist({
+          listType: 'playlist',
+          list: catObj.playlistId,
+          index: randomIndex
+        });
+        isPlaying = false;
+        updatePlayButtonState(false);
       }
     }
     
@@ -820,13 +822,13 @@
     }
 
     function prevSong() {
-      if (isPlayerReady && player.previousVideo) {
+      if (isPlayerReady && player && player.previousVideo) {
         player.previousVideo();
       }
     }
 
     function nextSong() {
-      if (isPlayerReady && player.nextVideo) {
+      if (isPlayerReady && player && player.nextVideo) {
         player.nextVideo();
       }
     }
