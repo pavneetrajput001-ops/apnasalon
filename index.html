@@ -419,7 +419,7 @@
         
 
         <!-- FOLD / UNFOLD MENU BUTTON -->
-        <button onclick="toggleFoldMenu()" class="hover:bg-amber-500/20 text-amber-300 text-xs px-3 py-1.5 rounded-full flex items-center space-x-1.5 transition whitespace-nowrap border border-amber-500/30 font-semibold">
+        <button id="fold-toggle-btn" onclick="toggleFoldMenu()" class="hover:bg-amber-500/20 text-amber-300 text-xs px-3 py-1.5 rounded-full flex items-center space-x-1.5 transition whitespace-nowrap border border-amber-500/30 font-semibold">
           <span>📂 अन्य स्टेशन</span>
           <span id="fold-icon" class="text-[9px] transition-transform duration-300">▼</span>
         </button>
@@ -432,7 +432,7 @@
         <button data-key="safar" onclick="selectCategory('safar')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           🛵 सफ़र
         </button>
-        <button  onclick="selectCategory('chai')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+        <button onclick="selectCategory('chai')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           ☕ चाय और गाने
         </button>
       <!--    <button onclick="selectCategory('raat')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
@@ -647,6 +647,25 @@
     }
 
     // YOUTUBE LOGIC
+    function foldMenu() {
+      const menu = document.getElementById('unfold-menu');
+      const icon = document.getElementById('fold-icon');
+      if (menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    document.addEventListener('click', (event) => {
+      const menu = document.getElementById('unfold-menu');
+      const toggleBtn = document.getElementById('fold-toggle-btn');
+      if (menu && !menu.classList.contains('hidden')) {
+        if (!menu.contains(event.target) && toggleBtn && !toggleBtn.contains(event.target)) {
+          foldMenu();
+        }
+      }
+    });
+
     function onYouTubeIframeAPIReady() {
       const randomIndex = Math.floor(Math.random() * 15);
 
@@ -826,6 +845,7 @@
     function selectCategory(key) {
       currentCategoryKey = key;
       updateUI();
+      foldMenu();
     }
 
     function prevSong() {
