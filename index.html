@@ -404,6 +404,9 @@
         <button data-key="salon" onclick="selectCategory('salon')" class="cat-btn bg-amber-500 text-stone-950 font-bold px-4 py-1.5 rounded-full text-xs transition shadow-lg whitespace-nowrap">
           💈 सैलून हिट्स
         </button>
+        <button data-key="classic90" onclick="selectCategory('classic90')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+          📼 90's क्लासिक
+        </button>
         <button data-key="purane" onclick="selectCategory('purane')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           📻 ओल्ड इज़ गोल्ड
         </button>
@@ -413,9 +416,7 @@
         <button data-key="kk" onclick="selectCategory('kk')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
             🎙️ केके 
           </button>
-        <button data-key="safar" onclick="selectCategory('safar')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
-          🛵 सफ़र
-        </button>
+        
 
         <!-- FOLD / UNFOLD MENU BUTTON -->
         <button onclick="toggleFoldMenu()" class="hover:bg-amber-500/20 text-amber-300 text-xs px-3 py-1.5 rounded-full flex items-center space-x-1.5 transition whitespace-nowrap border border-amber-500/30 font-semibold">
@@ -428,6 +429,9 @@
       <div id="unfold-menu" class="hidden p-3 glass-card rounded-2xl w-full max-w-xl transition-all border border-amber-500/30">
         <p class="text-[11px] font-bold text-amber-400/90 text-center mb-2 uppercase tracking-wider">अन्य स्टेशन (More Stations):</p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+        <button data-key="safar" onclick="selectCategory('safar')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+          🛵 सफ़र
+        </button>
         <button  onclick="selectCategory('chai')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           ☕ चाय और गाने
         </button>
@@ -582,17 +586,20 @@
 
     const MY_PLAYLIST_ID = "PL_HFpdcZhoSHU-NhkhAlZC8GvSnMMCH_J";
     const MY_PLAYLIST_ID_salon = "PL_HFpdcZhoSHU-NhkhAlZC8GvSnMMCH_J";
+    const MY_PLAYLIST_ID_90s = "PL_HFpdcZhoSG08CxeHNYQNtTAnuBfFphr"; 
     const MY_PLAYLIST_ID_purane = "PL_HFpdcZhoSGDrYxUBJLH6ccbSeYBAPmf";
     const MY_PLAYLIST_ID_kishore = "PLP7ERBVXGUZ8";
-    const MY_PLAYLIST_ID_kk = "PLe1DS67DnlOU"; // KK additional playlist ID
+    const MY_PLAYLIST_ID_kk = "PLe1DS67DnlOU";
+    const MY_PLAYLIST_ID_safar = "PL_HFpdcZhoSFqBwAIROJsAYJqlK3dPxH0";
 
     // All Categories (Kishor Daa added with playlist reference)
     const categories = {
       'salon': { name: "सैलून हिट्स", cat: "Category: सैलून हिट्स", tagline: '"सैलून की महफ़िल और सदाबहार नग़मों की शाम..."', playlistId: MY_PLAYLIST_ID_salon, bgId: 'bg-salon' },
+      'classic90': { name: "90's क्लासिक", cat: "Category: 90's क्लासिक", tagline: '"कैसेट की वो खड़खड़ाहट और दिल को छू लेने वाले 90s के सुर..."', playlistId: MY_PLAYLIST_ID_90s, bgId: 'bg-vintage' },
       'purane': { name: "ओल्ड इज़ गोल्ड", cat: "Category: ओल्ड इज़ गोल्ड", tagline: '"वही पुराना टेप... वही सदाबहार नग़मे"', playlistId: MY_PLAYLIST_ID_purane, bgId: 'bg-vintage' },
       'kishor': { name: "किशोर दा", cat: "Category: किशोर दा", tagline: '"किशोर कुमार की जादुई आवाज़ और अनमोल तराने..."', playlistId: MY_PLAYLIST_ID_kishore, bgId: 'bg-kishore' },
       'kk': { name: "केके", cat: "Category: केके", tagline: '"जिंदगी हर पल एक नया सफर है, और केके की रूहानी आवाज उसका सबसे हसीन हमसफर है..."', playlistId: MY_PLAYLIST_ID_kk, bgId: 'bg-kk' },
-      'safar': { name: "सफ़र", cat: "Category: सफ़र", tagline: '"सफ़र में खिलते हैं दिल के फूल..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-night' },
+      'safar': { name: "सफ़र", cat: "Category: सफ़र", tagline: '"सफ़र में खिलते हैं दिल के फूल..."', playlistId: MY_PLAYLIST_ID_safar, bgId: 'bg-night' },
       'chai': { name: "चाय और गाने", cat: "Category: चाय और गाने", tagline: '"शाम की चाय और मीठे तरानें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
       
       // Additional Playlists
@@ -865,6 +872,7 @@
       <p class="font-bold text-amber-400 uppercase tracking-wider text-[8px]">✨ Featured Stations & Rotations:</p>
       <div class="grid grid-cols-2 gap-1 text-[8px] text-amber-200/90 bg-black/40 p-2 rounded-xl border border-white/5">
         <span>💈 सैलून हिट्स</span>
+        <span>📼 90's क्लासिक</span>
         <span>📻 ओल्ड इज़ गोल्ड</span>
         <span>🎤 किशोर दा</span>
         <span>🎙️ केके</span>
@@ -877,7 +885,7 @@
 
     <!-- Legal & Credits Footer -->
     <div class="border-t border-amber-500/20 pt-2 text-[8px] text-amber-200/60 leading-normal space-y-1.5">
-<p>Audio is powered through embedded YouTube players with no local hosting. All intellectual property remains with respective creators and music labels.</p>
+      <p>Audio is powered through embedded YouTube players with no local hosting. All intellectual property remains with respective creators and music labels.</p>
       
       <p class="bg-amber-950/30 p-1.5 rounded-lg border border-amber-500/10">
         For copyright inquiries or takedown requests, email: 
