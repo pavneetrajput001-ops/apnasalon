@@ -158,6 +158,106 @@
     </svg>
   </div>
 
+
+  
+  <!-- ================================================== -->
+  <!-- 🎨 BACKGROUND SCENE: FULL-SCREEN KISHORE KUMAR VINTAGE ART -->
+  <!-- ================================================== -->
+  <div id="bg-kishore" class="dynamic-bg">
+    <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Deep Cinematic Moody Vignette Gradient for Edges -->
+        <radialGradient id="fullBgVignette" cx="50%" cy="50%" r="65%">
+          <stop offset="30%" stop-color="#000000" stop-opacity="0.1" />
+          <stop offset="70%" stop-color="#050201" stop-opacity="0.75" />
+          <stop offset="100%" stop-color="#020100" stop-opacity="0.95" />
+        </radialGradient>
+
+        <!-- Subtle Glow Filter -->
+        <filter id="fullImageGlow" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Full-Screen Base Image Covering Entire Viewport -->
+      <image 
+        x="0" 
+        y="0" 
+        width="1200" 
+        height="800" 
+        preserveAspectRatio="xMidYMid slice" 
+        href="./assets/kishor_da.jpeg" />
+
+      <!-- Cinematic Vignette & Atmospheric Shadow Overlay -->
+      <rect width="1200" height="800" fill="url(#fullBgVignette)" style="mix-blend-mode: multiply;" />
+      
+      <!-- Soft Warm Studio Tint Overlay -->
+      <rect width="1200" height="800" fill="#3b1f0e" opacity="0.25" style="mix-blend-mode: overlay;" />
+
+      <!-- Floating Musical Notes Decor -->
+      <g opacity="0.35" fill="#f59e0b">
+        <text x="100" y="150" font-size="48">♪</text>
+        <text x="220" y="250" font-size="32">♫</text>
+        <text x="90" y="720" font-size="54">♩</text>
+        <text x="1080" y="140" font-size="42">♬</text>
+        <text x="980" y="700" font-size="38">♪</text>
+      </g>
+    </svg>
+  </div>
+  
+   <!-- ================================================== -->
+  <!-- 🎨 BACKGROUND SCENE: FULL-SCREEN KK VINTAGE ART -->
+  <!-- ================================================== -->
+  <div id="bg-kk" class="dynamic-bg">
+    <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Deep Cinematic Moody Vignette Gradient for Edges -->
+        <radialGradient id="fullBgVignette" cx="50%" cy="50%" r="65%">
+          <stop offset="30%" stop-color="#000000" stop-opacity="0.1" />
+          <stop offset="70%" stop-color="#050201" stop-opacity="0.75" />
+          <stop offset="100%" stop-color="#020100" stop-opacity="0.95" />
+        </radialGradient>
+
+        <!-- Subtle Glow Filter -->
+        <filter id="fullImageGlow" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Full-Screen Base Image Covering Entire Viewport -->
+      <image 
+        x="0" 
+        y="0" 
+        width="1200" 
+        height="800" 
+        preserveAspectRatio="xMidYMid slice" 
+        href="./images/KK2.png" />
+
+      <!-- Cinematic Vignette & Atmospheric Shadow Overlay -->
+      <rect width="1200" height="800" fill="url(#fullBgVignette)" style="mix-blend-mode: multiply;" />
+      
+      <!-- Soft Warm Studio Tint Overlay -->
+      <rect width="1200" height="800" fill="#3b1f0e" opacity="0.25" style="mix-blend-mode: overlay;" />
+
+      <!-- Floating Musical Notes Decor -->
+      <g opacity="0.35" fill="#f59e0b">
+        <text x="100" y="150" font-size="48">♪</text>
+        <text x="220" y="250" font-size="32">♫</text>
+        <text x="90" y="720" font-size="54">♩</text>
+        <text x="1080" y="140" font-size="42">♬</text>
+        <text x="980" y="700" font-size="38">♪</text>
+      </g>
+    </svg>
+  </div>
+  
   <!-- ================================================== -->
   <!-- 🎨 BACKGROUND SCENE 2: VINTAGE RECORD / RADIO      -->
   <!-- ================================================== -->
@@ -267,20 +367,23 @@
         <button data-key="kishor" onclick="selectCategory('kishor')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           🎤 किशोर दा
         </button>
+        <button data-key="kk" onclick="selectCategory('kk')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+            🎙️ केके 
+          </button>
         <button data-key="safar" onclick="selectCategory('safar')" class="cat-btn hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           🛵 सफ़र
         </button>
 
         <!-- FOLD / UNFOLD MENU BUTTON -->
         <button onclick="toggleFoldMenu()" class="hover:bg-amber-500/20 text-amber-300 text-xs px-3 py-1.5 rounded-full flex items-center space-x-1.5 transition whitespace-nowrap border border-amber-500/30 font-semibold">
-          <span>📂 अन्य प्लेलिस्ट</span>
+          <span>📂 अन्य स्टेशन</span>
           <span id="fold-icon" class="text-[9px] transition-transform duration-300">▼</span>
         </button>
       </nav>
 
       <!-- UNFOLDABLE CONTAINER -->
       <div id="unfold-menu" class="hidden p-3 glass-card rounded-2xl w-full max-w-xl transition-all border border-amber-500/30">
-        <p class="text-[11px] font-bold text-amber-400/90 text-center mb-2 uppercase tracking-wider">अन्य प्लेलिस्ट (More Playlists):</p>
+        <p class="text-[11px] font-bold text-amber-400/90 text-center mb-2 uppercase tracking-wider">अन्य स्टेशन (More Stations):</p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
         <button  onclick="selectCategory('chai')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           ☕ चाय और गाने
@@ -393,12 +496,14 @@
     const MY_PLAYLIST_ID_salon = "PL_HFpdcZhoSHU-NhkhAlZC8GvSnMMCH_J";
     const MY_PLAYLIST_ID_purane = "PL_HFpdcZhoSGDrYxUBJLH6ccbSeYBAPmf";
     const MY_PLAYLIST_ID_kishore = "PLP7ERBVXGUZ8";
+    const MY_PLAYLIST_ID_kk = "PLe1DS67DnlOU"; // KK additional playlist ID
 
     // All Categories (Kishor Daa added with playlist reference)
     const categories = {
       'salon': { name: "सैलून हिट्स", cat: "Category: सैलून हिट्स", tagline: '"सैलून की महफ़िल और सदाबहार नग़मों की शाम..."', playlistId: MY_PLAYLIST_ID_salon, bgId: 'bg-salon' },
       'purane': { name: "ओल्ड इज़ गोल्ड", cat: "Category: ओल्ड इज़ गोल्ड", tagline: '"वही पुराना टेप... वही सदाबहार नग़मे"', playlistId: MY_PLAYLIST_ID_purane, bgId: 'bg-vintage' },
-      'kishor': { name: "किशोर दा", cat: "Category: किशोर दा", tagline: '"किशोर कुमार की जादुई आवाज़ और अनमोल तराने..."', playlistId: MY_PLAYLIST_ID_kishore, bgId: 'bg-vintage' },
+      'kishor': { name: "किशोर दा", cat: "Category: किशोर दा", tagline: '"किशोर कुमार की जादुई आवाज़ और अनमोल तराने..."', playlistId: MY_PLAYLIST_ID_kishore, bgId: 'bg-kishore' },
+      'kk': { name: "केके", cat: "Category: केके", tagline: '"जिंदगी हर पल एक नया सफर है, और केके की रूहानी आवाज उसका सबसे हसीन हमसफर है..."', playlistId: MY_PLAYLIST_ID_kk, bgId: 'bg-kk' },
       'safar': { name: "सफ़र", cat: "Category: सफ़र", tagline: '"सफ़र में खिलते हैं दिल के फूल..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-night' },
       'chai': { name: "चाय और गाने", cat: "Category: चाय और गाने", tagline: '"शाम की चाय और मीठे तरानें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
       
