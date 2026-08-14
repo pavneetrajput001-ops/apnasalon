@@ -135,13 +135,14 @@
     .control-btn-ring::before {
       content: '';
       position: absolute;
-      inset: -7px;
+      inset: -4px;
       border-radius: 9999px;
       background: rgba(245,158,11,0.12);
       opacity: 0;
       transform: scale(0.7);
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: -1;
+      pointer-events: none;
     }
     .control-btn-ring:hover::before {
       opacity: 1;
@@ -615,7 +616,7 @@
         <div class="flex flex-col items-center gap-1.5 flex-1 z-10 min-w-0">
           
           <!-- Controls -->
-          <div class="flex items-center space-x-5 md:space-x-4">
+          <div class="flex items-center space-x-5 md:space-x-4 overflow-visible py-1">
             <button onclick="prevSong()" title="Previous Song" class="control-btn-ring text-stone-300 hover:text-amber-300 active:scale-90 active:text-amber-400 transition-all duration-150 drop-shadow-lg p-1.5 -m-1.5 touch-manipulation">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="md:w-5 md:h-5">
                 <path d="M6 5a1 1 0 0 1 1 1v5.2l9.4-6.53A1 1 0 0 1 18 5.5v13a1 1 0 0 1-1.6.8L7 12.8V18a1 1 0 1 1-2 0V6a1 1 0 0 1 1-1z"/>
@@ -708,6 +709,7 @@
     let isPlaying = false;
     let isPlayerReady = false;
     let seekInterval = null;
+    let pendingAction = null; // queues a play/next/prev tap made before the player finished loading
 
     const MY_CHANNEL_URL = "https://music.youtube.com/@pavneetrajput2589";
     document.getElementById('yt-channel-link').href = MY_CHANNEL_URL;
@@ -831,6 +833,19 @@
         list: categories[currentCategoryKey].playlistId,
         index: randomIndex
       });
+
+      // If the user tapped play/next/prev before the player finished loading
+      // (common on slower mobile connections), run that action now instead
+      // of leaving it silently ignored.
+      if (pendingAction) {
+        const action = pendingAction;
+        pendingAction = null;
+        setTimeout(() => {
+          if (action === 'toggle') togglePlay();
+          else if (action === 'next') nextSong();
+          else if (action === 'prev') prevSong();
+        }, 300);
+      }
     }
 
     let playerErrorTimeout = null;
@@ -945,13 +960,30 @@
     }
 
     function togglePlay() {
-      if (!isPlayerReady) return;
+      if (!isPlayerReady || !player) {
+        pendingAction = 'toggle';
+        return;
+      }
 
-      if (isPlaying) {
+      const state = player.getPlayerState ? player.getPlayerState() : -1;
+      if (state === YT.PlayerState.PLAYING || state === YT.PlayerState.BUFFERING) {
         player.pauseVideo();
       } else {
         player.playVideo();
       }
+    }
+
+    // On some mobile connections, advancing tracks leaves the player
+    // "cued" instead of actually playing. This nudges it forward if so.
+    function ensurePlaybackResumes() {
+      setTimeout(() => {
+        if (player && player.getPlayerState) {
+          const state = player.getPlayerState();
+          if (state !== YT.PlayerState.PLAYING && state !== YT.PlayerState.BUFFERING) {
+            player.playVideo();
+          }
+        }
+      }, 400);
     }
 
     function updatePlayButtonState(playing) {
@@ -1014,14 +1046,20 @@
     }
 
     function prevSong() {
-      if (isPlayerReady && player.previousVideo) {
+      if (isPlayerReady && player && player.previousVideo) {
         player.previousVideo();
+        ensurePlaybackResumes();
+      } else {
+        pendingAction = 'prev';
       }
     }
 
     function nextSong() {
-      if (isPlayerReady && player.nextVideo) {
+      if (isPlayerReady && player && player.nextVideo) {
         player.nextVideo();
+        ensurePlaybackResumes();
+      } else {
+        pendingAction = 'next';
       }
     }
   </script>
