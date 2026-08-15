@@ -704,6 +704,66 @@
       </a>
     </div>
   </footer>
+
+  <!-- ================================================== -->
+  <!-- 📻 BOTTOM-LEFT INFO / ABOUT DRAWER                   -->
+  <!-- ================================================== -->
+  <div class="fixed bottom-3 left-3 z-50">
+    <!-- Toggle Button (resized to match the contact email pill) -->
+    <button id="info-toggle-btn" class="glass-card px-2.5 py-0.5 rounded-full text-[9px] font-bold text-amber-200 hover:text-amber-400 border border-amber-500/30 flex items-center gap-1 shadow-2xl transition hover:scale-105 backdrop-blur-xl cursor-pointer">
+      <span class="animate-pulse text-[9px]">📻</span>
+      <span class="tracking-wide font-semibold">About</span>
+    </button>
+
+    <!-- Expandable Content Drawer -->
+    <div id="info-drawer" class="hidden absolute bottom-9 left-0 w-72 max-w-[90vw] glass-card p-3 rounded-2xl border border-amber-500/30 shadow-[0_15px_50px_rgba(0,0,0,0.95)] text-amber-50 text-[9px] space-y-2.5 max-h-[75vh] overflow-y-auto backdrop-blur-2xl">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-amber-500/20 pb-2">
+        <div class="flex items-center space-x-1.5">
+          <span class="text-xs">🎙️</span>
+          <h3 class="text-xs font-bold text-amber-200 tracking-wide">सुनो ज़रा </h3>
+        </div>
+        <button id="info-close-btn" class="w-5 h-5 rounded-full bg-black/40 text-amber-400 hover:text-white flex items-center justify-center font-bold text-[9px] transition border border-amber-500/20 cursor-pointer">✕</button>
+      </div>
+
+      <!-- Description in English & Very Small Font -->
+      <p class="text-amber-100/90 leading-relaxed text-[9px]">
+        Broadcasting round-the-clock vintage 90s tracks inspired by the warm atmosphere of a neighborhood salon. Formally styled as <span class="text-amber-300 font-semibold">“Suno Zara”</span>, it captures the cozy, timeless vibe of community radio.
+      </p>
+
+      <!-- Rotations / Stations Grid -->
+      <div class="space-y-1 pt-0.5">
+        <p class="font-bold text-amber-400 uppercase tracking-wider text-[8px]">✨ Featured Stations & Rotations:</p>
+        <div class="grid grid-cols-2 gap-1 text-[8px] text-amber-200/90 bg-black/40 p-2 rounded-xl border border-white/5">
+          <span>💈 सैलून हिट्स</span>
+          <span>📼 90's क्लासिक</span>
+          <span>📻 ओल्ड इज़ गोल्ड</span>
+          <span>🎤 किशोर दा</span>
+          <span>🎙️ केके</span>
+          <span>🛵 सफ़र के साथी</span>
+          <span>☕ चाय और गाने</span>
+          <span>❤️ रोमांस हिट्स</span>
+          <span>🌧️ बारिश के गीत</span>
+        </div>
+      </div>
+
+      <!-- Legal & Credits Footer -->
+      <div class="border-t border-amber-500/20 pt-2 text-[8px] text-amber-200/60 leading-normal space-y-1.5">
+        <p>Audio is powered through embedded YouTube players with no local hosting. All intellectual property remains with respective creators and music labels.</p>
+
+        <p class="bg-amber-950/30 p-1.5 rounded-lg border border-amber-500/10">
+          For copyright inquiries or takedown requests, email:
+          <a href="mailto:contact@apnasalonradio.com" class="text-amber-300 underline hover:text-amber-200 font-medium block mt-0.5">contact@apnasalonradio.com</a>
+        </p>
+
+        <div class="text-center font-mono text-amber-400/80 pt-1 border-t border-white/5 tracking-wider">
+          © 2026 sunozara.in
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ================================================== -->
   <!-- ⚠️ PLAYER ERROR TOAST (hidden unless playback fails) -->
   <!-- ================================================== -->
@@ -1078,65 +1138,6 @@
       }
     }
   </script>
-<!-- ================================================== -->
-<!-- 📻 BOTTOM-LEFT INFO / ABOUT DRAWER                   -->
-<!-- ================================================== -->
-<div class="fixed bottom-3 left-3 z-50">
-  <!-- Toggle Button (Changed to About) -->
-  <button id="info-toggle-btn" class="glass-card px-3 py-1.5 rounded-full text-[10px] font-bold text-amber-200 hover:text-amber-400 border border-amber-500/30 flex items-center space-x-1.5 shadow-2xl transition hover:scale-105 backdrop-blur-xl cursor-pointer">
-    <span class="animate-pulse text-[11px]">📻</span>
-    <span class="tracking-wide font-semibold">About</span>
-  </button>
-
-  <!-- Expandable Content Drawer -->
-  <div id="info-drawer" class="hidden absolute bottom-12 left-0 w-72 max-w-[90vw] glass-card p-3 rounded-2xl border border-amber-500/30 shadow-[0_15px_50px_rgba(0,0,0,0.95)] text-amber-50 text-[9px] space-y-2.5 max-h-[75vh] overflow-y-auto backdrop-blur-2xl">
-    
-    <!-- Header -->
-    <div class="flex items-center justify-between border-b border-amber-500/20 pb-2">
-      <div class="flex items-center space-x-1.5">
-        <span class="text-xs">🎙️</span>
-        <h3 class="text-xs font-bold text-amber-200 tracking-wide">सुनो ज़रा </h3>
-      </div>
-      <button id="info-close-btn" class="w-5 h-5 rounded-full bg-black/40 text-amber-400 hover:text-white flex items-center justify-center font-bold text-[9px] transition border border-amber-500/20 cursor-pointer">✕</button>
-    </div>
-    
-    <!-- Description in English & Very Small Font -->
-    <p class="text-amber-100/90 leading-relaxed text-[9px]">
-      Broadcasting round-the-clock vintage 90s tracks inspired by the warm atmosphere of a neighborhood salon. Formally styled as <span class="text-amber-300 font-semibold">“Suno Zara”</span>, it captures the cozy, timeless vibe of community radio.
-    </p>
-
-    <!-- Rotations / Stations Grid -->
-    <div class="space-y-1 pt-0.5">
-      <p class="font-bold text-amber-400 uppercase tracking-wider text-[8px]">✨ Featured Stations & Rotations:</p>
-      <div class="grid grid-cols-2 gap-1 text-[8px] text-amber-200/90 bg-black/40 p-2 rounded-xl border border-white/5">
-        <span>💈 सैलून हिट्स</span>
-        <span>📼 90's क्लासिक</span>
-        <span>📻 ओल्ड इज़ गोल्ड</span>
-        <span>🎤 किशोर दा</span>
-        <span>🎙️ केके</span>
-        <span>🛵 सफ़र के साथी</span>
-        <span>☕ चाय और गाने</span>
-        <span>❤️ रोमांस हिट्स</span>
-        <span>🌧️ बारिश के गीत</span>
-      </div>
-    </div>
-
-    <!-- Legal & Credits Footer -->
-    <div class="border-t border-amber-500/20 pt-2 text-[8px] text-amber-200/60 leading-normal space-y-1.5">
-      <p>Audio is powered through embedded YouTube players with no local hosting. All intellectual property remains with respective creators and music labels.</p>
-      
-      <p class="bg-amber-950/30 p-1.5 rounded-lg border border-amber-500/10">
-        For copyright inquiries or takedown requests, email: 
-        <a href="mailto:contact@apnasalonradio.com" class="text-amber-300 underline hover:text-amber-200 font-medium block mt-0.5">contact@apnasalonradio.com</a>
-      </p>
-      
-      <div class="text-center font-mono text-amber-400/80 pt-1 border-t border-white/5 tracking-wider">
-        © 2026 sunozara.in
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
   (function() {
     const initDrawer = () => {
