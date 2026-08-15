@@ -186,10 +186,11 @@
 <body class="min-h-screen text-amber-50 flex flex-col justify-between relative overflow-hidden selection:bg-amber-500 selection:text-black">
 
   <!-- HIDDEN YOUTUBE PLAYER -->
-  <!-- Note: this must stay "visible" to the layout engine (not display:none),
-       or mobile browsers will suspend the audio inside it and require extra
-       taps to resume playback after pause/skip. -->
-  <div style="position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none;" aria-hidden="true">
+  <!-- Kept at a real size (not 0x0/1x1) and moved off-screen via negative
+       positioning, rather than shrunk or display:none'd. Mobile browsers
+       aggressively power-throttle media in near-zero-size or display:none
+       elements, which is what was causing playback to need repeated taps. -->
+  <div style="position:fixed; left:-9999px; top:-9999px; width:320px; height:200px; overflow:hidden; opacity:0; pointer-events:none;" aria-hidden="true">
     <div id="youtube-player"></div>
   </div>
 
@@ -814,8 +815,8 @@
       const randomIndex = Math.floor(Math.random() * 15);
 
       player = new YT.Player('youtube-player', {
-        height: '0',
-        width: '0',
+        height: '200',
+        width: '320',
         host: 'https://www.youtube-nocookie.com',
         playerVars: {
           'listType': 'playlist',
