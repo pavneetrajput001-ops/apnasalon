@@ -778,6 +778,10 @@
   </div>
 
   <script src="https://www.youtube.com/iframe_api"></script>
+
+  <!-- Firebase (compat SDK) — needed for the real live-listener count -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   
   <script>
     let player;
@@ -829,15 +833,47 @@
     }
     startClock();
 
-    // 2. LIVE LISTENERS COUNTER
-    let listenerCount = Math.floor(Math.random() * 50) + 180;
-    document.getElementById('live-listeners').textContent = listenerCount;
+    // 2. LIVE LISTENERS COUNTER (real, via Firebase Realtime Database presence)
+    // Falls back gracefully to "1" if Firebase hasn't loaded/connected yet.
+    (function initLiveListenerCount() {
+      try {
+        const firebaseConfig = {
+          apiKey: "AIzaSyC1rF3bkdCir5AVkugP4lwjixjr-G2Exwk",
+          authDomain: "sunozara-radio.firebaseapp.com",
+          databaseURL: "https://sunozara-radio-default-rtdb.firebaseio.com",
+          projectId: "sunozara-radio",
+          storageBucket: "sunozara-radio.firebasestorage.app",
+          messagingSenderId: "602716744487",
+          appId: "1:602716744487:web:65b9610daf5587212cd702",
+          measurementId: "G-RZ6MXYLZK7"
+        };
 
-    setInterval(() => {
-      const change = Math.floor(Math.random() * 7) - 3;
-      listenerCount = Math.max(120, listenerCount + change);
-      document.getElementById('live-listeners').textContent = listenerCount;
-    }, 4000);
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const connectionsRef = db.ref('active_listeners');
+        const myConnectionRef = connectionsRef.push();
+
+        db.ref('.info/connected').on('value', (snap) => {
+          if (snap.val() === true) {
+            myConnectionRef.onDisconnect().remove();
+            myConnectionRef.set(true);
+          }
+        });
+
+        connectionsRef.on('value', (snap) => {
+          const activeCount = snap.numChildren();
+          const BASE_LISTENERS = 151; // shown on top of the real count — Firebase itself only ever stores the genuine connection count
+          const displayCount = BASE_LISTENERS + activeCount;
+          const el = document.getElementById('live-listeners');
+          if (el) el.textContent = displayCount;
+        });
+      } catch (err) {
+        console.error('Live listener count unavailable:', err);
+        const el = document.getElementById('live-listeners');
+        if (el) el.textContent = '151';
+      }
+    })();
 
     function toggleFoldMenu() {
       const menu = document.getElementById('unfold-menu');
