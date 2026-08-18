@@ -530,27 +530,30 @@
         <button data-key="safar" onclick="selectCategory('safar')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           🛵 सफ़र
         </button>
-        <button onclick="selectCategory('chai')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+        <button data-key="millennium" onclick="selectCategory('millennium')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+          ❤️ मिलेनियम हिट्स
+        </button>
+        <button data-key="modern" onclick="selectCategory('modern')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
+          🎧 मॉडर्न हिट्स
+        </button>
+     <!--   <button onclick="selectCategory('chai')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 px-4 py-1.5 rounded-full text-xs transition whitespace-nowrap">
           ☕ चाय और गाने
         </button>
-      <!--    <button onclick="selectCategory('raat')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
+        <button onclick="selectCategory('raat')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             🌙 रात के गाने
           </button>
           <button onclick="selectCategory('sad')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             💔 दर्द भरे नग़मे
-	  </button>  -->
+	  </button> 
           <button onclick="selectCategory('romantic')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             ❤️ रोमांस हिट्स
-          </button>
+          </button> -->
    <!--       <button onclick="selectCategory('ghazal')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             🎶 ग़ज़ल संग्रह
           </button>
           <button onclick="selectCategory('devotional')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
             🪔 भक्ति संध्या
 	  </button>  -->
-          <button onclick="selectCategory('monsoon')" class="extra-cat-btn glass-card hover:bg-amber-500/20 text-amber-100 text-xs p-2 rounded-xl text-center border border-amber-500/20 transition">
-            🌧️ बारिश के गीत
-          </button>
         </div>
       </div>
     </div>
@@ -741,10 +744,11 @@
           <span>📻 ओल्ड इज़ गोल्ड</span>
           <span>🎤 किशोर दा</span>
           <span>🎙️ केके</span>
-          <span>🛵 सफ़र के साथी</span>
-          <span>☕ चाय और गाने</span>
-          <span>❤️ रोमांस हिट्स</span>
-          <span>🌧️ बारिश के गीत</span>
+          <span>🛵 सफ़र </span>
+          <span>❤️ मिलेनियम हिट्स</span>
+          <span>🎧 मॉडर्न हिट्स</span>
+         <!-- <span>☕ चाय और गाने</span>
+          <span>❤️ रोमांस हिट्स</span>  -->
         </div>
       </div>
 
@@ -800,6 +804,8 @@
     const MY_PLAYLIST_ID_kishore = "PLP7ERBVXGUZ8";
     const MY_PLAYLIST_ID_kk = "PLe1DS67DnlOU";
     const MY_PLAYLIST_ID_safar = "PL_HFpdcZhoSFqBwAIROJsAYJqlK3dPxH0";
+    const MY_PLAYLIST_ID_golden = "PLMK-gYF_u01Q";
+    const MY_PLAYLIST_ID_modern = "PLWY1kMAOnkzc";
 
     // All Categories (Kishor Daa added with playlist reference)
     const categories = {
@@ -810,14 +816,15 @@
       'kk': { name: "केके", cat: "Category: केके", tagline: '"जिंदगी हर पल एक नया सफर है, और केके की रूहानी आवाज उसका सबसे हसीन हमसफर है..."', playlistId: MY_PLAYLIST_ID_kk, bgId: 'bg-kk' },
       'safar': { name: "सफ़र", cat: "Category: सफ़र", tagline: '"सफ़र में खिलते हैं दिल के फूल..."', playlistId: MY_PLAYLIST_ID_safar, bgId: 'bg-night' },
       'chai': { name: "चाय और गाने", cat: "Category: चाय और गाने", tagline: '"शाम की चाय और मीठे तरानें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
+      'millennium': { name: "मिलेनियम हिट्स", cat: "Category: मिलेनियम हिट्स", tagline: '"नई सदी की शुरुआत के सुनहरे गाने..."', playlistId: MY_PLAYLIST_ID_golden, bgId: 'bg-night' },
+      'modern': { name: "मॉडर्न हिट्स", cat: "Category: मॉडर्न हिट्स", tagline: '"आज के दौर के हिट गाने..."', playlistId: MY_PLAYLIST_ID_modern, bgId: 'bg-night' },
       
       // Additional Playlists
       'raat': { name: "रात के गाने", cat: "Category: रात के गाने", tagline: '"रात का सफ़र और पुराने गानों का हमसफ़र..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
       'sad': { name: "दर्द भरे नग़मे", cat: "Category: दर्द भरे नग़मे", tagline: '"टूटे दिल की सदा... मीठे दर्द का एहसास"', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
       'romantic': { name: "रोमांस हिट्स", cat: "Category: रोमांस हिट्स", tagline: '"प्यार के नग़मे, मोहब्बत की बातें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
       'ghazal': { name: "ग़ज़ल संग्रह", cat: "Category: ग़ज़ल संग्रह", tagline: '"ग़ज़लों का सुहाना सफ़र..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
-      'devotional': { name: "भक्ति संध्या", cat: "Category: भक्ति संध्या", tagline: '"मन की शांति और भक्ति के सुर..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' },
-      'monsoon': { name: "बारिश के गीत", cat: "Category: बारिश के गीत", tagline: '"रिमझिम के तराने और पुरानी यादें..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' }
+      'devotional': { name: "भक्ति संध्या", cat: "Category: भक्ति संध्या", tagline: '"मन की शांति और भक्ति के सुर..."', playlistId: MY_PLAYLIST_ID, bgId: 'bg-salon' }
     };
 
     let currentCategoryKey = 'salon';
