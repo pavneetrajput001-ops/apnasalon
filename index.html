@@ -11,7 +11,7 @@
   
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #050505; /* Deep base color */
+      background-color: #050505;
     }
     .hindi-title {
       font-family: 'Yatra One', cursive;
@@ -23,7 +23,6 @@
       border: 1px solid rgba(245, 158, 11, 0.25);
     }
     
-    /* Apple Music / macOS Style Glass Dock Bar */
     .macos-player {
       background: rgba(24, 20, 18, 0.75);
       backdrop-filter: blur(25px);
@@ -40,7 +39,6 @@
       scrollbar-width: none;
     }
     
-    /* Sleek macOS Style Range Sliders */
     input[type=range].mac-slider {
       appearance: none;
       -webkit-appearance: none;
@@ -72,7 +70,6 @@
       transform: scale(1.15);
     }
 
-    /* 🎙️ Player Bar — signature "warm filament" accents */
     @keyframes filamentGlow {
       0%, 100% { box-shadow: 0 0 10px rgba(245,158,11,0.35), 0 0 0 rgba(245,158,11,0); }
       50% { box-shadow: 0 0 18px rgba(245,158,11,0.6), 0 0 26px rgba(245,158,11,0.15); }
@@ -98,7 +95,6 @@
       filter: drop-shadow(0 0 3px rgba(245,158,11,0.5));
     }
 
-    /* 🎚️ Player bar — refined premium pass (visual only) */
     @keyframes ambientPulse {
       0%, 100% { opacity: 0.55; transform: scale(1); }
       50% { opacity: 0.9; transform: scale(1.04); }
@@ -166,7 +162,6 @@
       background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5));
     }
 
-    /* 🌟 Dynamic Background Layers Setup 🌟 */
     .dynamic-bg {
       position: absolute;
       inset: 0;
@@ -185,18 +180,10 @@
 
 <body class="min-h-screen text-amber-50 flex flex-col justify-between relative overflow-hidden selection:bg-amber-500 selection:text-black">
 
-  <!-- HIDDEN YOUTUBE PLAYER -->
-  <!-- Kept at a real size (not 0x0/1x1) and moved off-screen via negative
-       positioning, rather than shrunk or display:none'd. Mobile browsers
-       aggressively power-throttle media in near-zero-size or display:none
-       elements, which is what was causing playback to need repeated taps. -->
   <div style="position:fixed; left:-9999px; top:-9999px; width:480px; height:270px; overflow:hidden; opacity:0; pointer-events:none;" aria-hidden="true">
     <div id="youtube-player"></div>
   </div>
 
-  <!-- ================================================== -->
-  <!-- 🎨 BACKGROUND SCENE 1: ORIGINAL SALON STOREFRONT    -->
-  <!-- ================================================== -->
   <div id="bg-salon" class="dynamic-bg active">
     <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -254,11 +241,6 @@
       <circle cx="430" cy="530" r="30" stroke="#000" stroke-width="4" fill="none" />
       <path d="M 340,530 L 385,530 L 415,480 L 370,480 Z M 385,530 L 385,460 L 400,460" stroke="#000" stroke-width="4" fill="none" />
 
-      <!-- ========================================== -->
-      <!-- 🐾 MINI CATS IN SALON SCENE                -->
-      <!-- ========================================== -->
-
-      <!-- 🐱 MINI CAT 1: Sitting Tuxedo Cat on the Shelf -->
       <g id="cat-sitting-shelf" transform="translate(972, 448)">
         <path d="M 18 38 C 28 38 28 20 22 20" stroke="#0f172a" stroke-width="3" stroke-linecap="round" fill="none" />
         <ellipse cx="14" cy="26" rx="9" ry="14" fill="#0f172a" />
@@ -278,7 +260,6 @@
         <path d="M 8 11 L 3 10 M 8 12 L 3 13 M 20 11 L 25 10 M 20 12 L 25 13" stroke="#e2e8f0" stroke-width="0.6" opacity="0.7" />
       </g>
 
-      <!-- 🐱 MINI CAT 2: Cute Calico Cat on the Floor near Barber Pole -->
       <g id="cat-floor" transform="translate(525, 550)">
         <path d="M -2 18 Q -10 10 -4 2" stroke="#ea580c" stroke-width="3" stroke-linecap="round" fill="none" />
         <ellipse cx="12" cy="18" rx="13" ry="9" fill="#f8fafc" />
@@ -301,9 +282,6 @@
 
 
   
-  <!-- ================================================== -->
-  <!-- 🎨 BACKGROUND SCENE: FULL-SCREEN KISHORE KUMAR VINTAGE ART -->
-  <!-- ================================================== -->
   <div id="bg-kishore" class="dynamic-bg">
     <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -324,7 +302,6 @@
         </filter>
       </defs>
 
-      <!-- Full-Screen Base Image Covering Entire Viewport -->
       <image 
         x="0" 
         y="0" 
@@ -333,13 +310,10 @@
         preserveAspectRatio="xMidYMid slice" 
         href="./images/kishor_da.png" />
 
-      <!-- Cinematic Vignette & Atmospheric Shadow Overlay -->
       <rect width="1200" height="800" fill="url(#fullBgVignette)" style="mix-blend-mode: multiply;" />
       
-      <!-- Soft Warm Studio Tint Overlay -->
       <rect width="1200" height="800" fill="#3b1f0e" opacity="0.25" style="mix-blend-mode: overlay;" />
 
-      <!-- Floating Musical Notes Decor -->
       <g opacity="0.35" fill="#f59e0b">
         <text x="100" y="150" font-size="48">♪</text>
         <text x="220" y="250" font-size="32">♫</text>
@@ -350,20 +324,15 @@
     </svg>
   </div>
   
-   <!-- ================================================== -->
-  <!-- 🎨 BACKGROUND SCENE: FULL-SCREEN KK VINTAGE ART -->
-  <!-- ================================================== -->
   <div id="bg-kk" class="dynamic-bg">
     <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- Deep Cinematic Moody Vignette Gradient for Edges -->
         <radialGradient id="fullBgVignette" cx="50%" cy="50%" r="65%">
           <stop offset="30%" stop-color="#000000" stop-opacity="0.1" />
           <stop offset="70%" stop-color="#050201" stop-opacity="0.75" />
           <stop offset="100%" stop-color="#020100" stop-opacity="0.95" />
         </radialGradient>
 
-        <!-- Subtle Glow Filter -->
         <filter id="fullImageGlow" x="-10%" y="-10%" width="120%" height="120%">
           <feGaussianBlur stdDeviation="8" result="blur" />
           <feMerge>
@@ -373,7 +342,6 @@
         </filter>
       </defs>
 
-      <!-- Full-Screen Base Image Covering Entire Viewport -->
       <image 
         x="0" 
         y="0" 
@@ -382,13 +350,10 @@
         preserveAspectRatio="xMidYMid slice" 
         href="./images/KK2.png" />
 
-      <!-- Cinematic Vignette & Atmospheric Shadow Overlay -->
       <rect width="1200" height="800" fill="url(#fullBgVignette)" style="mix-blend-mode: multiply;" />
       
-      <!-- Soft Warm Studio Tint Overlay -->
       <rect width="1200" height="800" fill="#3b1f0e" opacity="0.25" style="mix-blend-mode: overlay;" />
 
-      <!-- Floating Musical Notes Decor -->
       <g opacity="0.35" fill="#f59e0b">
         <text x="100" y="150" font-size="48">♪</text>
         <text x="220" y="250" font-size="32">♫</text>
@@ -399,9 +364,6 @@
     </svg>
   </div>
   
-  <!-- ================================================== -->
-  <!-- 🎨 BACKGROUND SCENE 2: VINTAGE RECORD / RADIO      -->
-  <!-- ================================================== -->
   <div id="bg-vintage" class="dynamic-bg">
     <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -426,9 +388,6 @@
     </svg>
   </div>
 
-  <!-- ================================================== -->
-  <!-- 🎨 BACKGROUND SCENE 3: NIGHT SKY / MOON           -->
-  <!-- ================================================== -->
   <div id="bg-night" class="dynamic-bg">
     <svg class="w-full h-full object-cover" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -440,11 +399,9 @@
       </defs>
       <rect width="1200" height="800" fill="url(#nightGrad)" />
       
-      <!-- Moon -->
       <circle cx="1000" cy="200" r="100" fill="#fef08a" opacity="0.8" />
       <circle cx="970" cy="180" r="100" fill="#020617" opacity="0.95" />
       
-      <!-- Scattered Stars -->
       <g fill="#ffffff">
         <circle cx="150" cy="120" r="2" opacity="0.8" />
         <circle cx="300" cy="250" r="1.5" opacity="0.5" />
@@ -456,7 +413,6 @@
         <circle cx="450" cy="550" r="1" opacity="0.3" />
       </g>
 
-      <!-- Soft Mountain Silhouette at bottom -->
       <path d="M0,800 L0,650 Q150,550 300,680 T700,600 T1200,650 L1200,800 Z" fill="#000000" opacity="0.6" />
       <path d="M0,800 L0,700 Q200,600 450,750 T900,650 T1200,720 L1200,800 Z" fill="#000000" opacity="0.8" />
     </svg>
@@ -466,13 +422,11 @@
   <header class="p-4 md:p-6 flex flex-col items-center justify-between max-w-7xl mx-auto w-full z-10 relative gap-3">
     
     <div class="w-full flex flex-wrap items-center justify-between gap-2">
-      <!-- LIVE TIME DISPLAY -->
       <div class="flex items-center space-x-2 bg-black/60 px-3.5 py-1.5 rounded-full border border-amber-500/20 text-xs font-mono text-amber-300">
         <span class="text-amber-400 font-bold">🕒</span>
         <span id="live-clock">00:00:00</span>
       </div>
 
-      <!-- STATUS & LIVE LISTENERS COUNTER -->
       <div class="flex items-center space-x-2">
         <div class="flex items-center space-x-2 bg-black/60 px-3 py-1.5 rounded-full border border-amber-500/20">
           <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping"></span>
@@ -486,7 +440,6 @@
         </div>
       </div>
 
-      <!-- YT CHANNEL LINK -->
       <div class="hidden lg:flex items-center">
         <a href="https://music.youtube.com/@pavneetrajput2589" target="_blank" id="yt-channel-link" class="glass-card px-4 py-1.5 rounded-full text-xs font-bold hover:bg-red-600/30 text-red-400 border-red-500/30 flex items-center space-x-1.5 transition">
           <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
@@ -495,7 +448,6 @@
       </div>
     </div>
 
-    <!-- MAIN CATEGORY TABS WITH "MORE PLAYLISTS" AT THE END -->
     <div class="w-full flex flex-col items-center gap-2">
       <nav id="category-bar" class="flex items-center space-x-2 overflow-x-auto max-w-full no-scrollbar p-1 glass-card rounded-full">
         <!-- 4 MAIN PLAYLISTS -->
@@ -516,14 +468,12 @@
           </button>
         
 
-        <!-- FOLD / UNFOLD MENU BUTTON -->
         <button id="fold-toggle-btn" onclick="toggleFoldMenu()" class="hover:bg-amber-500/20 text-amber-300 text-xs px-3 py-1.5 rounded-full flex items-center space-x-1.5 transition whitespace-nowrap border border-amber-500/30 font-semibold">
           <span>📂 अन्य स्टेशन</span>
           <span id="fold-icon" class="text-[9px] transition-transform duration-300">▼</span>
         </button>
       </nav>
 
-      <!-- UNFOLDABLE CONTAINER -->
       <div id="unfold-menu" class="hidden p-3 glass-card rounded-2xl w-full max-w-xl transition-all border border-amber-500/30">
         <p class="text-[11px] font-bold text-amber-400/90 text-center mb-2 uppercase tracking-wider">अन्य स्टेशन (More Stations):</p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -560,7 +510,6 @@
 
   </header>
 
-  <!-- Hero Content -->
   <main class="flex-1 flex flex-col justify-center items-center text-center px-4 py-4 max-w-4xl mx-auto w-full z-10 relative">
     <h1 class="hindi-title text-6xl md:text-8xl text-amber-100 tracking-wide drop-shadow-[0_12px_30px_rgba(0,0,0,0.95)]">
       सुनो ज़रा
@@ -575,30 +524,18 @@
     </div>
   </main>
 
-  <!-- ================================================== -->
-  <!-- 🎵 ULTRA-COMPACT SLIM LENGTH GLASS CAPSULE PLAYER  -->
-  <!-- ================================================== -->
   <footer class="p-2 md:p-3 w-full max-w-xl mx-auto sticky bottom-0 z-20 relative flex flex-col items-center pb-2">
 
-    <!-- Ambient glow puddle beneath the capsule -->
     <div class="player-ambient-glow"></div>
 
-    <!-- Outer Premium Border Glow -->
     <div class="player-border-shimmer relative w-full rounded-full p-[1.5px] shadow-[0_8px_30px_rgba(0,0,0,0.85)] hover:shadow-[0_10px_44px_rgba(245,158,11,0.3)] transition-shadow duration-500 group">
       
-      <!-- Inner Glass Container -->
       <div class="relative bg-[#0a0705]/90 backdrop-blur-2xl rounded-full px-3 py-2 md:px-5 md:py-2.5 flex items-center justify-between gap-2 md:gap-4 w-full overflow-hidden">
         
-        <!-- Subtle Background Glow -->
         <div class="absolute inset-0 bg-gradient-to-t from-amber-900/10 to-transparent pointer-events-none"></div>
-        <!-- Top glass hairline for realism -->
         <div class="absolute top-0 left-4 right-4 h-px player-hairline pointer-events-none"></div>
 
-        <!-- ========================================== -->
-        <!-- Left: Vinyl Record Thumbnail & Song Info   -->
-        <!-- ========================================== -->
         <div class="flex items-center space-x-2.5 min-w-0 w-[35%] md:w-[32%] z-10">
-          <!-- Spinning Vinyl Record with Tonearm Accent -->
           <div class="relative w-10 h-10 md:w-11 md:h-11 flex-shrink-0">
             <div class="relative w-full h-full rounded-full bg-black border border-stone-700 vinyl-ring flex items-center justify-center overflow-hidden group-hover:border-amber-500/60 transition-colors duration-500">
               <!-- Grooves -->
@@ -606,19 +543,15 @@
               <div class="absolute inset-0 rounded-full border border-white/10 m-1 pointer-events-none"></div>
               <!-- Image -->
               <img id="song-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23f59e0b' stroke-width='2'%3E%3Cpath d='M9 18V5l12-2v13'%3E%3C/path%3E%3Ccircle cx='6' cy='18' r='3'%3E%3C/circle%3E%3Ccircle cx='18' cy='16' r='3'%3E%3C/circle%3E%3C/svg%3E" alt="Song Cover" class="w-full h-full object-cover animate-[spin_8s_linear_infinite] opacity-90">
-              <!-- Glossy sheen overlay for a wet-vinyl look -->
               <div class="absolute inset-0 rounded-full vinyl-sheen pointer-events-none"></div>
-              <!-- Vinyl Center Hole -->
               <div class="absolute w-2 h-2 bg-[#0a0705] rounded-full border border-stone-600 shadow-inner z-10"></div>
             </div>
-            <!-- Decorative Tonearm (purely visual, non-interactive) -->
             <div class="tonearm hidden md:block absolute -top-1.5 -right-1.5 w-4 h-4 pointer-events-none">
               <div class="absolute top-0 right-0 w-0.5 h-3.5 bg-gradient-to-b from-amber-300 to-amber-600 rounded-full shadow-[0_0_4px_rgba(245,158,11,0.7)]"></div>
               <div class="absolute top-0 right-0 w-1.5 h-1.5 -translate-x-[3px] -translate-y-[3px] rounded-full bg-amber-400 shadow-[0_0_5px_rgba(245,158,11,0.9)]"></div>
             </div>
           </div>
 
-          <!-- Song Details -->
           <div class="text-left min-w-0 flex flex-col justify-center gap-0.5">
             <h3 id="song-title" class="player-track-title text-xs md:text-[13px] font-bold text-amber-50 truncate drop-shadow-md leading-tight">Select A Station</h3>
             <p id="song-category" class="text-[8px] md:text-[9px] text-amber-400/80 truncate uppercase tracking-wider font-medium flex items-center gap-1">
@@ -628,12 +561,8 @@
           </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- Center: Playback Controls & Progress Bar   -->
-        <!-- ========================================== -->
         <div class="flex flex-col items-center gap-1.5 flex-1 z-10 min-w-0">
           
-          <!-- Controls -->
           <div class="flex items-center space-x-5 md:space-x-4 overflow-visible py-1">
             <button onclick="prevSong()" title="Previous Song" class="control-btn-ring text-stone-300 active:scale-90 active:text-amber-400 transition-all duration-150 drop-shadow-lg p-1.5 -m-1.5 touch-manipulation">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="md:w-5 md:h-5">
@@ -641,7 +570,6 @@
               </svg>
             </button>
             
-            <!-- Play / Pause Button -->
             <button id="play-btn" onclick="togglePlay()" class="control-btn-ring text-stone-300 active:scale-90 active:text-amber-400 transition-all duration-150 drop-shadow-lg p-1.5 -m-1.5 touch-manipulation">
               <svg id="play-icon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" class="translate-x-[1px] md:w-7 md:h-7">
                 <path d="M8 5.14v13.72a1 1 0 0 0 1.5.87l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z"/>
@@ -659,7 +587,6 @@
             </button>
           </div>
 
-          <!-- Progress Tracker -->
           <div class="flex items-center space-x-1.5 w-full group/slider">
             <span id="current-time" class="text-[9px] md:text-[10px] text-amber-200/60 font-mono w-8 text-right tracking-wider">00:00</span>
             <div class="relative flex-1 flex items-center">
@@ -669,15 +596,10 @@
           </div>
         </div>
 
-        <!-- Divider between controls and equalizer -->
         <div class="hidden sm:block w-px h-9 bg-gradient-to-b from-transparent via-amber-500/25 to-transparent z-10"></div>
 
-        <!-- ========================================== -->
-        <!-- Right: Equalizer Visualizer & ON AIR Badge -->
-        <!-- ========================================== -->
         <div class="hidden sm:flex items-center justify-end z-10">
           <div class="eq-pill flex flex-col items-end px-3 py-1.5 rounded-xl border border-amber-500/15 shadow-inner">
-            <!-- Animated Soundwave Visualizer Bars -->
             <div class="eq-bars-glow flex items-end space-x-0.5 mb-1 h-3">
               <div class="w-0.5 bg-gradient-to-t from-amber-600 to-amber-300 rounded-t-sm animate-[pulse_1s_ease-in-out_infinite]" style="height: 55%"></div>
               <div class="w-0.5 bg-gradient-to-t from-amber-600 to-amber-300 rounded-t-sm animate-[pulse_1.2s_ease-in-out_infinite_reverse]" style="height: 100%"></div>
@@ -685,7 +607,6 @@
               <div class="w-0.5 bg-gradient-to-t from-amber-600 to-amber-300 rounded-t-sm animate-[pulse_1.5s_ease-in-out_infinite_reverse]" style="height: 75%"></div>
               <div class="w-0.5 bg-gradient-to-t from-amber-600 to-amber-300 rounded-t-sm animate-[pulse_1.1s_ease-in-out_infinite]" style="height: 45%"></div>
             </div>
-            <!-- ON AIR Badge -->
             <div class="flex items-center space-x-1">
               <span class="relative flex h-1.5 w-1.5">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
@@ -699,7 +620,6 @@
       </div>
     </div>
 
-    <!-- Contact Email Pill -->
     <div class="mt-2 text-center z-10">
       <a href="mailto:sunozara90sradio@gmail.com" class="text-[9px] text-amber-200/50 hover:text-amber-300 transition-colors flex items-center justify-center gap-1 bg-[#050505]/60 px-2.5 py-0.5 rounded-full border border-amber-500/10 backdrop-blur-md shadow-lg hover:bg-[#050505]/80">
         <span class="text-amber-500/70 text-[9px]">✉️</span>
@@ -708,20 +628,14 @@
     </div>
   </footer>
 
-  <!-- ================================================== -->
-  <!-- 📻 BOTTOM-LEFT INFO / ABOUT DRAWER                   -->
-  <!-- ================================================== -->
   <div class="fixed bottom-2 left-3 z-50">
-    <!-- Toggle Button (resized to match the contact email pill) -->
     <button id="info-toggle-btn" class="glass-card px-2.5 py-0.5 rounded-full text-[9px] font-bold text-amber-200 hover:text-amber-400 border border-amber-500/30 flex items-center gap-1 shadow-2xl transition hover:scale-105 backdrop-blur-xl cursor-pointer">
       <span class="animate-pulse text-[9px]">📻</span>
       <span class="tracking-wide font-semibold">About</span>
     </button>
 
-    <!-- Expandable Content Drawer -->
     <div id="info-drawer" class="hidden absolute bottom-9 left-0 w-72 max-w-[90vw] glass-card p-3 rounded-2xl border border-amber-500/30 shadow-[0_15px_50px_rgba(0,0,0,0.95)] text-amber-50 text-[9px] space-y-2.5 max-h-[75vh] overflow-y-auto backdrop-blur-2xl">
 
-      <!-- Header -->
       <div class="flex items-center justify-between border-b border-amber-500/20 pb-2">
         <div class="flex items-center space-x-1.5">
           <span class="text-xs">🎙️</span>
@@ -730,12 +644,10 @@
         <button id="info-close-btn" class="w-5 h-5 rounded-full bg-black/40 text-amber-400 hover:text-white flex items-center justify-center font-bold text-[9px] transition border border-amber-500/20 cursor-pointer">✕</button>
       </div>
 
-      <!-- Description in English & Very Small Font -->
       <p class="text-amber-100/90 leading-relaxed text-[9px]">
         A round-the-clock stream of vintage, golden-era 90s Hindi music, styled after the radio that used to play at your neighborhood salon. <span class="text-amber-300 font-semibold">सुनो ज़रा</span> — simple, nostalgic, always on.
       </p>
 
-      <!-- Rotations / Stations Grid -->
       <div class="space-y-1 pt-0.5">
         <p class="font-bold text-amber-400 uppercase tracking-wider text-[8px]">✨ Featured Stations & Rotations:</p>
         <div class="grid grid-cols-2 gap-1 text-[8px] text-amber-200/90 bg-black/40 p-2 rounded-xl border border-white/5">
@@ -752,7 +664,6 @@
         </div>
       </div>
 
-      <!-- Legal & Credits Footer -->
       <div class="border-t border-amber-500/20 pt-2 text-[8px] text-amber-200/60 leading-normal space-y-1.5">
         <p>Audio is powered through embedded YouTube players with no local hosting. All intellectual property remains with respective creators and music labels.</p>
 
@@ -768,9 +679,6 @@
     </div>
   </div>
 
-  <!-- ================================================== -->
-  <!-- ⚠️ PLAYER ERROR TOAST (hidden unless playback fails) -->
-  <!-- ================================================== -->
   <div id="player-error-toast" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 z-50 max-w-[90vw] w-80">
     <div class="glass-card rounded-2xl px-4 py-3 border border-red-500/40 shadow-[0_15px_40px_rgba(0,0,0,0.8)] flex items-start gap-2.5">
       <span class="text-red-400 text-sm mt-0.5">⚠️</span>
@@ -783,7 +691,6 @@
 
   <script src="https://www.youtube.com/iframe_api"></script>
 
-  <!-- Firebase (compat SDK) — needed for the real live-listener count -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   
@@ -792,7 +699,7 @@
     let isPlaying = false;
     let isPlayerReady = false;
     let seekInterval = null;
-    let pendingAction = null; // queues a play/next/prev tap made before the player finished loading
+    let pendingAction = null; // queues a play
 
     const MY_CHANNEL_URL = "https://music.youtube.com/@pavneetrajput2589";
     document.getElementById('yt-channel-link').href = MY_CHANNEL_URL;
@@ -807,7 +714,7 @@
     const MY_PLAYLIST_ID_golden = "PLMK-gYF_u01Q";
     const MY_PLAYLIST_ID_modern = "PLWY1kMAOnkzc";
 
-    // All Categories (Kishor Daa added with playlist reference)
+    // All Categories 
     const categories = {
       'salon': { name: "सैलून हिट्स", cat: "Category: सैलून हिट्स", tagline: '"सैलून की महफ़िल और सदाबहार नग़मों की शाम..."', playlistId: MY_PLAYLIST_ID_salon, bgId: 'bg-salon' },
       'classic90': { name: "90's क्लासिक", cat: "Category: 90's क्लासिक", tagline: '"कैसेट की वो खड़खड़ाहट और दिल को छू लेने वाले 90s के सुर..."', playlistId: MY_PLAYLIST_ID_90s, bgId: 'bg-vintage' },
