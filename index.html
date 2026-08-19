@@ -42,14 +42,31 @@
     input[type=range].mac-slider {
       appearance: none;
       -webkit-appearance: none;
-      background: rgba(255, 255, 255, 0.15);
-      height: 3px;
-      border-radius: 4px;
-      transition: height 0.15s ease;
+      --seek-progress: 0%;
+      background: transparent;
+      height: 32px;
+      min-height: 32px;
+      border-radius: 9999px;
+      touch-action: manipulation;
+      transition: transform 0.15s ease;
     }
 
-    input[type=range].mac-slider:hover {
-      height: 5px;
+    input[type=range].mac-slider::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 9999px;
+      background: linear-gradient(to right, #ffffff 0%, #ffffff var(--seek-progress), rgba(255,255,255,0.15) var(--seek-progress), rgba(255,255,255,0.15) 100%);
+    }
+
+    input[type=range].mac-slider::-moz-range-track {
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    input[type=range].mac-slider::-moz-range-progress {
+      height: 8px;
+      border-radius: 9999px;
+      background: #ffffff;
     }
 
     input[type=range].mac-slider::-webkit-slider-thumb {
@@ -58,6 +75,7 @@
       background: #fef3c7;
       height: 11px;
       width: 11px;
+      margin-top: -1.5px;
       border-radius: 50%;
       cursor: pointer;
       opacity: 0;
@@ -65,7 +83,23 @@
       box-shadow: 0 0 8px rgba(245,158,11,0.9), 0 2px 6px rgba(0,0,0,0.5);
     }
 
+    input[type=range].mac-slider::-moz-range-thumb {
+      background: #fef3c7;
+      height: 11px;
+      width: 11px;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      box-shadow: 0 0 8px rgba(245,158,11,0.9), 0 2px 6px rgba(0,0,0,0.5);
+    }
+
     input[type=range].mac-slider:hover::-webkit-slider-thumb {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    input[type=range].mac-slider:hover::-moz-range-thumb {
       opacity: 1;
       transform: scale(1.15);
     }
@@ -590,7 +624,7 @@
           <div class="flex items-center space-x-1.5 w-full group/slider">
             <span id="current-time" class="text-[9px] md:text-[10px] text-amber-200/60 font-mono w-8 text-right tracking-wider">00:00</span>
             <div class="relative flex-1 flex items-center">
-              <input type="range" id="seek-bar" value="0" min="0" max="100" oninput="seekTo(this.value)" class="mac-slider flex-1 cursor-pointer w-full h-1 bg-stone-800/80 rounded-full overflow-hidden">
+              <input type="range" id="seek-bar" value="0" min="0" max="100" aria-label="Song progress" oninput="seekTo(this.value)" class="mac-slider flex-1 cursor-pointer w-full bg-stone-800/80 rounded-full overflow-hidden">
             </div>
             <span id="total-duration" class="text-[9px] md:text-[10px] text-stone-500 font-mono w-8 text-left tracking-wider">00:00</span>
           </div>
@@ -833,6 +867,7 @@
           'list': categories[currentCategoryKey].playlistId,
           'index': randomIndex,
           'shufflePlaylist': 1,
+          'loop': 1,
           'autoplay': 0,
           'controls': 0,
           'playsinline': 1,
@@ -848,6 +883,12 @@
 
     function onPlayerReady(event) {
       isPlayerReady = true;
+      // Shuffle changes the forward order; loop prevents playback from stopping
+      // when that shuffled order reaches its final song. YouTube keeps Previous
+      // aligned with the order already played.
+      if (player && player.setLoop) {
+        player.setLoop(true);
+      }
       if (player && player.setShuffle) {
         player.setShuffle(true);
       }
@@ -858,6 +899,12 @@
         list: categories[currentCategoryKey].playlistId,
         index: randomIndex
       });
+      // cuePlaylist can replace the active playlist, so reapply these settings
+      // after it has finished queuing.
+      setTimeout(() => {
+        if (player && player.setLoop) player.setLoop(true);
+        if (player && player.setShuffle) player.setShuffle(true);
+      }, 100);
 
       // If the user tapped play/next/prev before the player finished loading
       // (common on slower mobile connections), run that action now instead
@@ -951,7 +998,7 @@
     function updateSeekBarFill(percent) {
       const seekBar = document.getElementById('seek-bar');
       seekBar.value = percent;
-      seekBar.style.background = `linear-gradient(to right, #ffffff 0%, #ffffff ${percent}%, rgba(255,255,255,0.15) ${percent}%, rgba(255,255,255,0.15) 100%)`;
+      seekBar.style.setProperty('--seek-progress', `${percent}%`);
     }
 
     function startProgressTimer() {
@@ -1057,8 +1104,15 @@
           player.loadPlaylist({
             listType: 'playlist',
             list: catObj.playlistId,
-            index: randomIndex
+            index: randomIndex,
+            loop: 1
           });
+          if (player.setLoop) player.setLoop(true);
+          if (player.setShuffle) player.setShuffle(true);
+          setTimeout(() => {
+            if (player && player.setLoop) player.setLoop(true);
+            if (player && player.setShuffle) player.setShuffle(true);
+          }, 100);
           player.playVideo();
         }, 50);
       }
